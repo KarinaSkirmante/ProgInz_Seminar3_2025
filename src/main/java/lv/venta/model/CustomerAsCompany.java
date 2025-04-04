@@ -13,7 +13,6 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import lv.venta.enums.City;
 
 @Setter
 @NoArgsConstructor
@@ -28,9 +27,18 @@ public class CustomerAsCompany {
 	@Column(name = "Casid")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int casid;
+	
+	@NotNull
+	@Pattern(regexp = "[L][V][0-9]{11}")
+	@Column
 	private String companyRegNo;
+	
+	@NotNull
+	@Pattern(regexp = "^\\d+_company_LV\\d{11}$/gm")
+	@Column
 	private String customerCode;
 	
+	@NotNull
 	@Pattern(regexp = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$")
 	@Column(name = "PhoneNo")
 	private String phoneNo;
@@ -41,5 +49,16 @@ public class CustomerAsCompany {
 	@Size(min = 4, max = 100)
 	@Column(name = "Title")
 	private String title;
+
+
+	public CustomerAsCompany(String companyRegNo, String customerCode, String phoneNo, String title) {
+		setCompanyRegNo(companyRegNo); 
+		setCustomerCode(customerCode);
+		setPhoneNo(phoneNo);
+		setTitle(title);
+	}
+	
+	
+	
 
 }
