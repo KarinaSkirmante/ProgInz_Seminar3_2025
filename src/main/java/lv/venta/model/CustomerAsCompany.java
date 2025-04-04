@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -49,13 +51,18 @@ public class CustomerAsCompany {
 	@Size(min = 4, max = 100)
 	@Column(name = "Title")
 	private String title;
+	
+	@ManyToOne
+	@JoinColumn(name = "Aid")
+	private Address address;
 
 
-	public CustomerAsCompany(String companyRegNo, String customerCode, String phoneNo, String title) {
+	public CustomerAsCompany(String companyRegNo, String customerCode, String phoneNo, String title, Address address) {
 		setCompanyRegNo(companyRegNo); 
 		setCustomerCode(customerCode);
 		setPhoneNo(phoneNo);
 		setTitle(title);
+		setAddress(address);
 	}
 	
 	
