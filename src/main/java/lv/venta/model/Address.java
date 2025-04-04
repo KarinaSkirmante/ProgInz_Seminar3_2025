@@ -50,6 +50,10 @@ public class Address {
 	@OneToMany(mappedBy = "address")
 	private Collection<CustomerAsCompany> companies;
 	
+	@ToString.Exclude
+	@OneToMany(mappedBy = "address")
+	private Collection<CustomerAsPerson> persons;
+	
 	public Address(City city, int houseNo, String title) {
 		setCity(city);
 		setHouseNo(houseNo);
